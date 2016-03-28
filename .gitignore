@@ -1,5 +1,3 @@
-# Created by .ignore support plugin (hsz.mobi)
-### Maven template
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -10,4 +8,10 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .idea/
+.settings/
+.classpath
+.project
+build/
+*~
+.DS_STORE
 
