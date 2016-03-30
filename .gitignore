@@ -13,5 +13,5 @@ buildNumber.properties
 .project
 build/
 *~
-.DS_STORE
-
+.DS_Store
+*.iml
