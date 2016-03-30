@@ -27,6 +27,11 @@ public class SpringBootCamelApplication {
   @Autowired
   private ProducerTemplate producerTemplate;
 
+  @Bean
+  public Upper upper() {
+    return new Upper();
+
+  }
 
   @Bean
   public RouteBuilder route() {
@@ -36,7 +41,7 @@ public class SpringBootCamelApplication {
 //        from("direct:start").to("log:end?level=INFO");
         from("timer://foo?period=1000").process(exchange -> {
           exchange.getIn().setBody("Hello, world with Java!");
-        }).to("log:end?level=INFO");
+        }).bean(upper()).to("log:end?level=INFO");
       }
     };
   }
@@ -46,5 +51,19 @@ public class SpringBootCamelApplication {
     CamelSpringBootApplicationController applicationController =
         applicationContext.getBean(CamelSpringBootApplicationController.class);
     applicationController.run();
+  }
+
+  public class Upper {
+    // both methodes are OK
+
+    //    public String convert(String s) {
+    //      return s.toUpperCase();
+    //    }
+
+
+    public void process(Exchange ex) {
+//      System.out.println(ex.getPattern());
+      ex.getIn().setBody(ex.getIn().getBody().toString().toUpperCase());
+    }
   }
 }

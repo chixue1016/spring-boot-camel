@@ -13,9 +13,7 @@
     </route>
     <route>
       <from uri="direct:B"/>
-      <transform>
-        <simple>B[ ${body} ]</simple>
-      </transform>
+      <to uri="upper" />
       <to uri="mock:endB"/>
     </route>
 
